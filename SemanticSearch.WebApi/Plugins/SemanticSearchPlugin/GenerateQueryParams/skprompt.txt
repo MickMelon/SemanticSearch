@@ -1,0 +1,46 @@
+Let's generate some query parameters for a property search REST API. Here are the details of the API:
+
+--ENDPOINT SPEC--
+Path: /api/properties
+Method: GET
+Params: 
+  - type (allowed values: House, Flat) (string). If a value other than "House" or "Flat" is given, default to "House".
+  - price (example values: 10000, 340000, etc) (int)
+  - bedrooms (example values: 1, 2, 3, etc) (int)
+  - bathrooms (example values: 1, 2, 3, etc) (int)
+  - garden (allowed values: true, false) (bool)
+  - parking (allowed values: true, false) (bool)
+  - location (example values: London, Manchester, etc) (string)
+--END ENDPOINT SPEC--
+
+--EXAMPLES--
+Input: """
+  - Location: London
+  - Type: House
+  - Bedrooms: 3
+  - Garden: Yes
+"""
+Output: /api/properties?location=London&type=House&bedrooms=3&garden=true
+
+Input: """
+  - Location: Edinburgh
+  - Type: Semi-detached
+"""
+Output: /api/properties?location=Edinburgh&type=House
+
+Input: """
+  - Location: Manchester
+  - Price: £450k
+"""
+Output: /api/properties?location=Manchester&price=450000
+
+Input: """
+  - Location: Edinburgh
+"""
+Output: /api/properties?location=Edinburgh
+--END EXAMPLES--
+
+Input: """
+  {{$input}}
+"""
+Output:
